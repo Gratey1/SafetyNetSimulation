@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class GenerateRandomPeopleClickAction : BaseClickAction
 {
     [SerializeField]
-    private Text numPeopleTxt;
+    private InputField numPeopleInputField;
 
     protected override void OnButtonClicked()
     {
         int _numPeople = 0;
-        if (numPeopleTxt == null || !int.TryParse(numPeopleTxt.text, out _numPeople))
+        if (numPeopleInputField == null || !int.TryParse(numPeopleInputField.text, out _numPeople))
             return;
 
-        GameManager.Instance.PersonGenerator.GeneratePeople(_numPeople);
+        GameManager.Instance.GenerateRandomPeople(_numPeople);
     }
 }

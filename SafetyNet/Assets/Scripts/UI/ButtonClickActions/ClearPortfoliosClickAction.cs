@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerateRandomPersonClickAction : BaseClickAction
+public class ClearPortfoliosClickAction : BaseClickAction
 {
     protected override void OnButtonClicked()
     {
-        GameManager.Instance.GenerateRandomPerson();
+        GameManager.Instance.ResetAllPortfolios();
     }
 }

@@ -121,7 +121,6 @@ public class GameManager : OurMonoBehaviour
     // ***************************************************************************
 
     public WorldCanvas WorldCanvas { get { return worldCanvasInstance; } }
-    public PersonGenerator PersonGenerator { get { return personGeneratorInstance; } }
     public float SecondsPerYear { get { return secondsPerYear; } }
     public float SecondsPerWeek { get { return secondsPerWeek; } }
     public float TimeTilNextWeek { get { return timeTilNextWeek; } }
@@ -154,6 +153,20 @@ public class GameManager : OurMonoBehaviour
         TriggerPeopleRemoved(people.ToArray());
         ResetVariables();
         TriggerResetSelected();
+    }
+
+    public Person GenerateRandomPerson()
+    {
+        Person _person = personGeneratorInstance.GeneratePerson();
+        AddPerson(_person);
+        return _person;
+    }
+
+    public Person[] GenerateRandomPeople(int _count)
+    {
+        Person[] _people = personGeneratorInstance.GeneratePeople(_count);
+        AddPeople(_people);
+        return _people;
     }
 
     public void AddPerson(Person _person)

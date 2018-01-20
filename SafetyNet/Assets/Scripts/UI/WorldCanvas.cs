@@ -12,6 +12,9 @@ public class WorldCanvas : OurMonoBehaviour
     [SerializeField]
     private GameObject[] gameObjectsActiveWhileNotPlaying;
 
+    [SerializeField]
+    private Transform peopleParent;
+
     // *******************************************************************
 
     public override void OnEnable()

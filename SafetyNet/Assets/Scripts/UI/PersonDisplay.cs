@@ -134,11 +134,13 @@ public class PersonDisplay : OurMonoBehaviour
             }
 
             lastPortfolioValue = GameManager.Instance.CalculatePortfolioValue(person);
+            UpdatePortfolioTxt();
         }
     }
 
     private void OnValueUpdated(float _num)
     {
+        UpdateValueTxt();
     }
 
     // ****************************************************************************************

@@ -59,13 +59,13 @@ public class PersonGenerator : OurMonoBehaviour
 
     // *******************************************************************************************
 
-    public Person[] GeneratePeople(int _num)
+    public Person[] GeneratePeople(int _count)
     {
-        if (_num <= 0)
+        if (_count <= 0)
             return null;
 
-        Person[] _people = new Person[_num];
-        for (int i = 0; i < _num; i++)
+        Person[] _people = new Person[_count];
+        for (int i = 0; i < _count; i++)
         {
             _people[i] = GeneratePerson();
         }

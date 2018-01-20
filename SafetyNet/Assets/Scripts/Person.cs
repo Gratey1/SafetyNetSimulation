@@ -95,12 +95,22 @@ public class Person
     public void AddValue(float _amount)
     {
         personalValue += _amount;
+        if(personalValue < 0.0f)
+        {
+            personalValue = 0.0f;
+        }
+
         TriggerValueUpdated(_amount);
     }
 
     public void RemoveValue(float _amount)
     {
         personalValue -= _amount;
+        if (personalValue < 0.0f)
+        {
+            personalValue = 0.0f;
+        }
+
         TriggerValueUpdated(-_amount);
     }
 
