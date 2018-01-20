@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class OurMonoBehaviour : MonoBehaviour, IPooledUpdate
 {
@@ -60,16 +59,27 @@ public class OurMonoBehaviour : MonoBehaviour, IPooledUpdate
 
     public virtual void OnEnable()
     {
-        PooledUnityCalls.AddUpdate(this);
+        if(UsesUpdate())
+        {
+            PooledUnityCalls.AddUpdate(this);
+        }
     }
 
     public virtual void OnDisable()
     {
-        PooledUnityCalls.RemoveUpdate(this);
+        if (UsesUpdate())
+        {
+            PooledUnityCalls.RemoveUpdate(this);
+        }
     }
 
     public virtual void Update()
     {
 
+    }
+
+    protected virtual bool UsesUpdate()
+    {
+        return true;
     }
 }

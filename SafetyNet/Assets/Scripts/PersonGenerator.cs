@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PersonGenerator : OurMonoBehaviour
 {
@@ -10,10 +7,25 @@ public class PersonGenerator : OurMonoBehaviour
     [Header("File Paths")]
 
     [SerializeField]
-    private string maleNamesResourcesPath = "MaleNames.txt";
+    private string maleNamesResourcesPath = "Names/MaleNames";
 
     [SerializeField]
-    private string femaleNamesResourcesPath = "FemaleNames.txt";
+    private string femaleNamesResourcesPath = "Names/FemaleNames";
+
+    [SerializeField]
+    private string maleIconsResourcesPath = "Icons/Male";
+
+    [SerializeField]
+    private string femaleIconsResourcesPath = "Icons/Female";
+
+    
+    [Header("Icons")]
+
+    [SerializeField]
+    private Sprite[] maleIcons;
+
+    [SerializeField]
+    private Sprite[] femaleIcons;
 
 
     [Header("Annual Income")]
@@ -42,6 +54,7 @@ public class PersonGenerator : OurMonoBehaviour
 
     private string[] maleNames;
     private string[] femaleNames;
+    
     private uint[] validWeeksBetweenPay = { 1, 2, 4 };
 
     // *******************************************************************************************
@@ -52,7 +65,7 @@ public class PersonGenerator : OurMonoBehaviour
             return null;
 
         Person[] _people = new Person[_num];
-        for(int i = 0; i < _num; i++)
+        for (int i = 0; i < _num; i++)
         {
             _people[i] = GeneratePerson();
         }
@@ -64,11 +77,12 @@ public class PersonGenerator : OurMonoBehaviour
     {
         EBiologicalSex _sex = GetRandomSex();
         string _name = GetRandomName(_sex);
+        Sprite _icon = GetRandomIcon(_sex);
         uint _weeksBetweenPay = GetRandomWeeksBetweenPay();
         float _paycheckAmount = (GetRandomAnnualIncome() / 52) * _weeksBetweenPay;
         float _savingsPercentage = GetRandomSavingsPercentage();
 
-        return new Person(_name, _sex, _paycheckAmount, _savingsPercentage, _weeksBetweenPay);
+        return new Person(_name, _icon, _sex, _paycheckAmount, _savingsPercentage, _weeksBetweenPay);
     }
 
     // *******************************************************************************************
@@ -95,6 +109,19 @@ public class PersonGenerator : OurMonoBehaviour
                 return GetRandomElementInArray<string>(femaleNames);
             default:
                 return "";
+        }
+    }
+
+    private Sprite GetRandomIcon(EBiologicalSex _sex)
+    {
+        switch (_sex)
+        {
+            case EBiologicalSex.Male:
+                return GetRandomElementInArray<Sprite>(maleIcons);
+            case EBiologicalSex.Female:
+                return GetRandomElementInArray<Sprite>(femaleIcons);
+            default:
+                return null;
         }
     }
 
